@@ -1,6 +1,8 @@
 <?php
 include 'lib/PDO.php';
-
+echo '<pre>';
+print_r($_POST);
+echo '</pre>';
 if(!empty($_POST))
 {
 	foreach($_POST as $key=>$value)
@@ -8,18 +10,10 @@ if(!empty($_POST))
 		$$key = $value;
 	}
 	$base = 'exercicepdo_hachage';
-	$sql = 'SELECT id FROM utilisateur WHERE login =\''.$login.'\' AND password =\''.md5($password).'\'';
+	$sql = 'INSERT INTO utilisateur (login, password) VALUES (:new_login,md5(:new_password))';
 	
-	if(SelectAll($base,$sql))
-	{
-		$row = SelectAll($base,$sql);
-		echo '<p>Bienvenue utilisateur numéro : '.$row[0]['id'].'</p>';
-	}
-	else
-	{
-		echo ("Login ou Mot de passe incorrect.");
-		echo ('<a href="hachage_connexion.php">Retour</a>');
-	}
+	InsertAjout($base,$sql,$new_login,$new_password);
+	header("location:hachage_connexion.php");
 	
 
 }
