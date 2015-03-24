@@ -22,4 +22,4 @@ else
 	header("location:hachage_connexion.php");
 }
 ?>
-<html><head><title>Ajout</title></head></html>
+<html><head><title>Ajout utilisateur</title></head></html>
